@@ -1,6 +1,6 @@
 import 'newsModal.dart';
 
-class NewsModal
+  class NewsModal
 {
   String? status;
   int? totalResults;
