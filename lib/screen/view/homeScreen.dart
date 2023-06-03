@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_api/screen/view/viewScreen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -26,7 +27,11 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(icon: Icon(Icons.home),label: 'home'),
           BottomNavigationBarItem(icon: Icon(Icons.home),label: 'home'),
         ]),
-
+        body: TabBarView(children: [
+          viewScreen(),
+          viewScreen(),
+          viewScreen(),
+        ]),
       ),
     ),);
   }

@@ -5,12 +5,18 @@ import '../../utilis/api_helper.dart';
 
 class NewsProvider extends ChangeNotifier
 {
-  String country='us';
+  String country='in';
   void changecountry(String coun)
   {
     country=coun;
     notifyListeners();
   }
+  // int index=0;
+  // void changeIndex(int value)
+  // {
+  //   index=value;
+  //   notifyListeners();
+  // }
 
   Future<NewsModal> loadnews({required String country})
   async {
