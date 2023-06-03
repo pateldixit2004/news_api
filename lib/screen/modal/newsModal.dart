@@ -27,13 +27,7 @@
 //
 
 
-// To parse this JSON data, do
-//
-//     final newsModel = newsModelFromJson(jsonString);
 
-// To parse this JSON data, do
-//
-//     final newsModal = newsModalFromJson(jsonString);
 
 import 'dart:convert';
 

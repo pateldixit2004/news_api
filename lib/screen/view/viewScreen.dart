@@ -74,12 +74,19 @@ class _viewScreenState extends State<viewScreen> {
                       // ),
                       Expanded(
                         child: ListView.builder(itemBuilder: (context, index) {
-                          return tile(
-                              img: '${newsModal!.articles![index].urlToImage}',
-                              inf: '${newsModal!.articles![index].title}',
-                              aut: '${newsModal!.articles![index].author}',
-                              dat: '${newsModal!.articles![index]
-                                  .publishedAt}');
+                          return InkWell(
+                            onTap: () {
+
+                              Navigator.pushNamed(context, 'newsview',arguments: index);
+
+                            },
+                            child: tile(
+                                img: '${newsModal!.articles![index].urlToImage}',
+                                inf: '${newsModal!.articles![index].title}',
+                                aut: '${newsModal!.articles![index].author}',
+                                dat: '${newsModal!.articles![index]
+                                    .publishedAt}'),
+                          );
                         }, itemCount: newsModal!.articles!.length,),
                       )
                     ],
@@ -99,44 +106,38 @@ class _viewScreenState extends State<viewScreen> {
   Widget tile({String? img, String? inf, String? aut, String? dat}) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: InkWell(
-        onTap: () {
-          Navigator.pushNamed(context, 'newsview',arguments: index);
+      child: Container(
+        height: 20.h,
+        width: 100.w,
+        color: Colors.red,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
 
-        },
-        child: Container(
-          height: 20.h,
-          width: 100.w,
-          color: Colors.red,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Image.network("$img", height: 10.h, width: 10.w,),
+            ),
+            SizedBox(
+              width: 1.w,
+            ),
+            Column(
+              children: [
+                Text("$inf"),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Image.network("$img", height: 10.h, width: 10.w,),
-              ),
-              SizedBox(
-                width: 1.w,
-              ),
-              Column(
-                children: [
-                  Text("$inf"),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('$aut'),
+                    SizedBox(width: 5.w,),
+                    Text('$dat')
+                  ],
+                ),
 
-                    children: [
-                      Text('$aut'),
-                      SizedBox(width: 5.w,),
-                      Text('$dat')
-                    ],
-                  ),
-
-                ],
-              )
-            ],
-          ),
+              ],
+            )
+          ],
         ),
       ),
     );
