@@ -26,6 +26,8 @@ class _viewScreenState extends State<viewScreen> {
       child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.white,
+            title: Text('News Api',style: TextStyle(color: Colors.black),),
+            centerTitle: true,
             actions: [
               TextButton(
                   onPressed: () {
@@ -85,19 +87,21 @@ class _viewScreenState extends State<viewScreen> {
                                   onTap: () {
                                     infoModel info = infoModel(
                                         author:
-                                            '${newsModal!.articles![index].author}',
+                                            newsModal!.articles![index].author,
                                         img:
-                                            '${newsModal!.articles![index].urlToImage}',
+                                            newsModal!.articles![index].urlToImage,
                                     contaent:
-                                            '${newsModal!.articles![index].content}',publish: '${newsModal!.articles![index].publishedAt}');
+                                            newsModal!.articles![index].content,
+                                        // publish: newsModal!.articles![index].publishedAt,
+                                        );
 
                                     Navigator.pushNamed(context, 'newsview',
                                         arguments: info);
                                   },
                                   child: tile(
                                       img:
-                                          // '${newsModal!.articles![index].urlToImage}',
-                                      '${info.img}',
+                                          '${newsModal!.articles![index].urlToImage}',
+
                                       inf:
                                           '${newsModal!.articles![index].title}',
                                       aut:
