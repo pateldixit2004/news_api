@@ -108,9 +108,8 @@ class _viewScreenState extends State<viewScreen> {
                                           .urlToImage}' == null
                                           ?
 
-                                      'https://www.google.com/imgres?imgurl=https%3A%2F%2Fcdn.britannica.com%2F97%2F1597-050-008F30FA%2FFlag-India.jpg&tbnid=LDAjM51x9-NkkM&vet=12ahUKEwiA7uSJ5Kj_AhUF5HMBHTq7DU8QMygCegUIARDuAQ..i&imgrefurl=https%3A%2F%2Fwww.britannica.com%2Fplace%2FIndia&docid=qsYvT3y4ymQyVM&w=1600&h=1067&itg=1&q=india&ved=2ahUKEwiA7uSJ5Kj_AhUF5HMBHTq7DU8QMygCegUIARDuAQ'
-                                          : '${newsModal!.articles![index]
-                                          .urlToImage},
+                                      'https://www.istockphoto.com/photos/breaking-news-paper'
+                                          : '${newsModal!.articles![index].urlToImage}
 
                                       inf:
                                   '${newsModal!.articles![index].title}',
