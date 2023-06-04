@@ -21,17 +21,18 @@ class _viewScreenState extends State<viewScreen> {
   Widget build(BuildContext context) {
     providerF = Provider.of<NewsProvider>(context, listen: false);
     providerT = Provider.of<NewsProvider>(context, listen: true);
+    infoModel info =infoModel();
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
-            backgroundColor: Colors.greenAccent,
+            backgroundColor: Colors.white,
             actions: [
               TextButton(
                   onPressed: () {
                     providerT!.changecountry('in');
                   },
-                  child: Text("in")),
-              TextButton(onPressed: () {}, child: Text("uk")),
+                  child: Text("in"),style: TextButton.styleFrom(foregroundColor: Colors.black)),
+              TextButton(onPressed: () {providerT!.changecountry('Au');}, child: Text("Au"),style: TextButton.styleFrom(foregroundColor: Colors.black),),
             ],
           ),
           body: Column(
@@ -95,7 +96,8 @@ class _viewScreenState extends State<viewScreen> {
                                   },
                                   child: tile(
                                       img:
-                                          'img==null?assets/image/img.png:${newsModal!.articles![index].urlToImage}',
+                                          // '${newsModal!.articles![index].urlToImage}',
+                                      '${info.img}',
                                       inf:
                                           '${newsModal!.articles![index].title}',
                                       aut:
@@ -131,14 +133,14 @@ class _viewScreenState extends State<viewScreen> {
         color: Colors.red,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
+
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Image.network(
                 "$img",
-                height: 10.h,
-                width: 5.w,
+                height: 50,
+                width: 50,
               ),
             ),
             SizedBox(

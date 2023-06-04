@@ -24,29 +24,39 @@ class _NewViewScreenState extends State<NewViewScreen> {
     // int index= ModalRoute.of(context)!.settings.arguments as int;
     infoModel info = ModalRoute.of(context)!.settings.arguments as infoModel;
 
-    return SafeArea(child: Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-           Container(
-             height: 20.h,
-             width: 100.w,
-             decoration: BoxDecoration(
-               image:DecorationImage(image: NetworkImage('${info.img}',),fit: BoxFit.fill)),
-             ),
-            Text("${info.contaent}",style: TextStyle(fontSize: 15.sp),),
-            Spacer(),
-           Row(
-             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-             children: [
-               Text("${info.publish}"),
-               Text("${info.author}"),
-             ],
-           )
-          ],
+    return SafeArea(
+      child: Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Container(
+                height: 20.h,
+                width: 100.w,
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: NetworkImage(
+                          '${info.img}',
+                        ),
+                        fit: BoxFit.fill)),
+              ),
+
+              info.contaent==null?Text("Contant is Not avalible"):Text(
+                "${info.contaent}",
+                style: TextStyle(fontSize: 15.sp),
+              ),
+              Spacer(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("${info.publish}"),
+                  Text("${info.author}"),
+                ],
+              )
+            ],
+          ),
         ),
       ),
-    ),);
+    );
   }
 }

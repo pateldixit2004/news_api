@@ -15,10 +15,10 @@ void main()
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          // initialRoute: 'view',
+
           routes: {
-            '/':(context)=> HomeScreen(),
-            'view':(context)=> viewScreen(),
+            'home':(context)=> HomeScreen(),
+            '/':(context)=> viewScreen(),
             'newsview':(context)=> NewViewScreen(),
           },
         ),
