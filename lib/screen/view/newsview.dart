@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:news_api/screen/modal/infoModel.dart';
 import 'package:news_api/screen/modal/newsModal.dart';
 import 'package:provider/provider.dart';
+import 'package:sizer/sizer.dart';
 
 import '../provider/NewsProvider.dart';
 
@@ -20,15 +22,30 @@ class _NewViewScreenState extends State<NewViewScreen> {
     providerF = Provider.of<NewsProvider>(context, listen: false);
     providerT = Provider.of<NewsProvider>(context, listen: true);
     // int index= ModalRoute.of(context)!.settings.arguments as int;
-    int op = ModalRoute.of(context)!.settings.arguments as int;
+    infoModel info = ModalRoute.of(context)!.settings.arguments as infoModel;
 
-    NewsModal newsModal=NewsModal();
     return SafeArea(child: Scaffold(
-      body: Column(
-        children: [
-          Text("${newsModal!.articles!}")
-        ],
-
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+           Container(
+             height: 20.h,
+             width: 100.w,
+             decoration: BoxDecoration(
+               image:DecorationImage(image: NetworkImage('${info.img}',),fit: BoxFit.fill)),
+             ),
+            Text("${info.contaent}",style: TextStyle(fontSize: 15.sp),),
+            Spacer(),
+           Row(
+             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+             children: [
+               Text("${info.publish}"),
+               Text("${info.author}"),
+             ],
+           )
+          ],
+        ),
       ),
     ),);
   }
