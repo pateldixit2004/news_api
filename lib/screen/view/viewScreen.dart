@@ -21,20 +21,25 @@ class _viewScreenState extends State<viewScreen> {
   Widget build(BuildContext context) {
     providerF = Provider.of<NewsProvider>(context, listen: false);
     providerT = Provider.of<NewsProvider>(context, listen: true);
-    infoModel info =infoModel();
+    infoModel info = infoModel();
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.white,
-            title: Text('News Api',style: TextStyle(color: Colors.black),),
+            title: Text('News Api', style: TextStyle(color: Colors.black),),
             centerTitle: true,
             actions: [
               TextButton(
                   onPressed: () {
                     providerT!.changecountry('in');
                   },
-                  child: Text("in"),style: TextButton.styleFrom(foregroundColor: Colors.black)),
-              TextButton(onPressed: () {providerT!.changecountry('Au');}, child: Text("Au"),style: TextButton.styleFrom(foregroundColor: Colors.black),),
+                  child: Text("in"),
+                  style: TextButton.styleFrom(foregroundColor: Colors.black)),
+              TextButton(onPressed: () {
+                providerT!.changecountry('Au');
+              },
+                child: Text("Au"),
+                style: TextButton.styleFrom(foregroundColor: Colors.black),),
             ],
           ),
           body: Column(
@@ -86,28 +91,34 @@ class _viewScreenState extends State<viewScreen> {
                                 return InkWell(
                                   onTap: () {
                                     infoModel info = infoModel(
-                                        author:
-                                            newsModal!.articles![index].author,
-                                        img:
-                                            newsModal!.articles![index].urlToImage,
-                                    contaent:
-                                            newsModal!.articles![index].content,
-                                        // publish: newsModal!.articles![index].publishedAt,
-                                        );
+                                      author:
+                                      newsModal!.articles![index].author,
+                                      img:
+                                      newsModal!.articles![index].urlToImage,
+                                      contaent:
+                                      newsModal!.articles![index].content,
+                                      // publish: newsModal!.articles![index].publishedAt,
+                                    );
 
                                     Navigator.pushNamed(context, 'newsview',
                                         arguments: info);
                                   },
                                   child: tile(
-                                      img:
-                                          '${newsModal!.articles![index].urlToImage}',
+                                      img: '${newsModal!.articles![index]
+                                          .urlToImage}' == null
+                                          ?
+
+                                      'https://www.google.com/imgres?imgurl=https%3A%2F%2Fcdn.britannica.com%2F97%2F1597-050-008F30FA%2FFlag-India.jpg&tbnid=LDAjM51x9-NkkM&vet=12ahUKEwiA7uSJ5Kj_AhUF5HMBHTq7DU8QMygCegUIARDuAQ..i&imgrefurl=https%3A%2F%2Fwww.britannica.com%2Fplace%2FIndia&docid=qsYvT3y4ymQyVM&w=1600&h=1067&itg=1&q=india&ved=2ahUKEwiA7uSJ5Kj_AhUF5HMBHTq7DU8QMygCegUIARDuAQ'
+                                          : '${newsModal!.articles![index]
+                                          .urlToImage},
 
                                       inf:
-                                          '${newsModal!.articles![index].title}',
+                                  '${newsModal!.articles![index].title}',
                                       aut:
-                                          '${newsModal!.articles![index].author}',
+                                      '${newsModal!.articles![index].author}',
                                       dat:
-                                          '${newsModal!.articles![index].publishedAt}'),
+                                      '${newsModal!.articles![index]
+                                          .publishedAt}'),
                                 );
                               },
                               itemCount: newsModal!.articles!.length,
