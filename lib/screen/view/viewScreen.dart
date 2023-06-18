@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:news_api/screen/modal/infoModel.dart';
 import 'package:news_api/screen/modal/newsModal.dart';
@@ -24,6 +25,7 @@ class _viewScreenState extends State<viewScreen> {
     infoModel info = infoModel();
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Color(0x7bc084be),
           appBar: AppBar(
             backgroundColor: Colors.white,
             title: Text('News Api', style: TextStyle(color: Colors.black),),
@@ -92,32 +94,56 @@ class _viewScreenState extends State<viewScreen> {
                                   onTap: () {
                                     infoModel info = infoModel(
                                       author:
-                                      newsModal!.articles![index].author,
+                                      newsModal.articles![index].author,
                                       img:
-                                      newsModal!.articles![index].urlToImage,
+                                      newsModal.articles![index].urlToImage,
                                       contaent:
-                                      newsModal!.articles![index].content,
-                                      // publish: newsModal!.articles![index].publishedAt,
+                                      newsModal.articles![index].content,
+                                      publish:
+                                      "${newsModal.articles![index].publishedAt}",
+
                                     );
 
                                     Navigator.pushNamed(context, 'newsview',
                                         arguments: info);
                                   },
-                                  child: tile(
-                                      img: '${newsModal!.articles![index]
-                                          .urlToImage}' == null
-                                          ?
 
-                                      'https://www.istockphoto.com/photos/breaking-news-paper'
-                                          : '${newsModal!.articles![index].urlToImage}
+                                  child: Column(
+                                    children: [
+                                      // Padding(
+                                      //   padding: const EdgeInsets.all(8.0),
+                                      //   child: ClipRRect(
+                                      //
+                                      //     borderRadius: BorderRadius.circular(10),
+                                      //     child: CachedNetworkImage(
+                                      //       imageUrl: '${newsModal.articles![index].urlToImage}',
+                                      //       progressIndicatorBuilder: (context, url, progress) => Center(
+                                      //         child: Image.asset(
+                                      //           'assets/image/img.png',
+                                      //         ),
+                                      //       ),
+                                      //       errorWidget: (context, url, error) => Icon(Icons.account_circle),
+                                      //     ),
+                                      //   ),
+                                      // ),
 
-                                      inf:
-                                  '${newsModal!.articles![index].title}',
-                                      aut:
-                                      '${newsModal!.articles![index].author}',
-                                      dat:
-                                      '${newsModal!.articles![index]
-                                          .publishedAt}'),
+                                      tile(
+                                          // img: '${newsModal.articles![index]
+                                          //     .urlToImage}' == null
+                                          //     ?
+                                          //
+                                          // 'https://www.hindustantimes.com/ht-img/img/2023/02/10/550x309/WhatsApp_Image_2021-09-18_at_09.42.18_1631944439782_1676072893301_1676072893301.jpeg'
+                                          //     : '${newsModal.articles![index].urlToImage}',
+                                          img: '${newsModal.articles![index]}',
+                                          inf:
+                                      '${newsModal.articles![index].title}',
+                                          aut:
+                                          '${newsModal.articles![index].author}',
+                                          dat:
+                                          '${newsModal.articles![index]
+                                              .publishedAt}'),
+                                    ],
+                                  ),
                                 );
                               },
                               itemCount: newsModal!.articles!.length,
@@ -128,7 +154,9 @@ class _viewScreenState extends State<viewScreen> {
                     } else if (snapshot.hasError) {
                       return Text("${snapshot.error}");
                     }
-                    return CircularProgressIndicator();
+                    return
+                      Center(child: CircularProgressIndicator());
+
                   },
                   future: providerF!.loadnews(country: providerT!.country),
                 ),
@@ -142,35 +170,52 @@ class _viewScreenState extends State<viewScreen> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        height: 20.h,
-        width: 100.w,
-        color: Colors.red,
+        height:70,
+        width: double.infinity,
+        margin: EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: Color(0x96d97f7f),
+          borderRadius: BorderRadius.circular(10)
+        ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
 
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Image.network(
-                "$img",
-                height: 50,
-                width: 50,
+
+            Container(
+
+              width: 40,
+              child: CircleAvatar(
+                radius: 10,
+                backgroundImage: NetworkImage('$img'),
+                child:  CachedNetworkImage(
+                  imageUrl: 'imh',
+                  progressIndicatorBuilder: (context, url, progress) => Center(
+                    child: Image.asset(
+                      'assets/image/img.png',
+                    ),
+                  ),
+                  errorWidget: (context, url, error) => Icon(Icons.account_circle),
+                ),
+
               ),
             ),
             SizedBox(
               width: 1.w,
             ),
+
             Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("$inf"),
+                Container(width: 300,child: Text("$inf",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),)),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('$aut'),
+                    Text('$aut',style: TextStyle(fontSize: 10),),
                     SizedBox(
                       width: 5.w,
                     ),
-                    Text('$dat')
+                    Text('$dat',style: TextStyle(fontSize: 10),)
                   ],
                 ),
               ],

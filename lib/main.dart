@@ -10,19 +10,18 @@ void main()
 {
   runApp(
     Sizer(builder: (context, orientation, deviceType) =>  MultiProvider(
-        providers: [
-          ChangeNotifierProvider(create: (context) => NewsProvider(),),
-        ],
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-
-          routes: {
-            'home':(context)=> HomeScreen(),
-            '/':(context)=> viewScreen(),
-            'newsview':(context)=> NewViewScreen(),
-          },
+          providers: [
+            ChangeNotifierProvider(create: (context) => NewsProvider(),),
+          ],
+          child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            routes: {
+              'home':(context)=> HomeScreen(),
+              '/':(context)=> viewScreen(),
+              'newsview':(context)=> NewViewScreen(),
+            },
+          ),
         ),
-      ),
     )
   );
 }

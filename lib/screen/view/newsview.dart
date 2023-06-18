@@ -40,10 +40,10 @@ class _NewViewScreenState extends State<NewViewScreen> {
                         ),
                         fit: BoxFit.fill)),
               ),
-
+              SizedBox(height: 15,),
               info.contaent==null?Text("Contant is Not avalible"):Text(
                 "${info.contaent}",
-                style: TextStyle(fontSize: 15.sp),
+                style: TextStyle(fontSize: 15),
               ),
               Spacer(),
               Row(

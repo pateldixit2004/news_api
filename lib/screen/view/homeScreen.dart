@@ -11,28 +11,37 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          bottom: TabBar(tabs: [
-            Tab(text: 'All News',),
-            Tab(text: 'Fashion',),
-            Tab(text: 'Sports',),
-          ]),
-        ),
-        bottomNavigationBar: BottomNavigationBar(items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home),label: 'home'),
-          BottomNavigationBarItem(icon: Icon(Icons.home),label: 'home'),
-          BottomNavigationBarItem(icon: Icon(Icons.home),label: 'home'),
-        ]),
-        body: TabBarView(children: [
-          viewScreen(),
-          viewScreen(),
-          viewScreen(),
-        ]),
-      ),
+    return SafeArea(child: Scaffold(
+
+     body: Padding(
+       padding: const EdgeInsets.all(8.0),
+       child: CustomScrollView(
+         slivers: [
+           SliverAppBar(
+             leading: Text("News"),
+             actions: [
+               Icon(Icons.notification_add_outlined)
+             ],
+             expandedHeight: 100,
+             flexibleSpace: Padding(
+               padding: const EdgeInsets.all(8.0),
+               child: TextField(
+                 decoration: InputDecoration(
+                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(5),),
+                   prefixIcon: Icon(Icons.search),
+                   iconColor: Colors.blue,
+                   enabledBorder: OutlineInputBorder(
+                     borderSide: BorderSide(color: Colors.amber)
+                   ),
+
+                 ),
+               ),
+             ),
+
+           )
+         ],
+       ),
+     ),
     ),);
   }
 }
